@@ -12,3 +12,4 @@
 /home/ianmcnerlin/csharp-academy/math-game/MathGame/MathGame/obj/Debug/net10.0/MathGame.pdb
 /home/ianmcnerlin/csharp-academy/math-game/MathGame/MathGame/obj/Debug/net10.0/MathGame.genruntimeconfig.cache
 /home/ianmcnerlin/csharp-academy/math-game/MathGame/MathGame/obj/Debug/net10.0/ref/MathGame.dll
+/home/ianmcnerlin/csharp-academy/math-game/MathGame/MathGame/obj/Debug/net10.0/MathGame.sourcelink.json
