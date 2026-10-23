@@ -1,0 +1,165 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:BiscuitTracker"
+        xmlns:viewModels="clr-namespace:BiscuitTracker.ViewModels"
+        x:Class="BiscuitTracker.MainWindow"
+        x:DataType="viewModels:MainViewModel"
+        Title="NiCMiTap — Non-intrusive Capture"
+        Width="1100" Height="700">
+
+    <!-- Lets the previewer show this window with a real ViewModel -->
+    <Design.DataContext>
+        <viewModels:MainViewModel />
+    </Design.DataContext>
+
+    <!-- Shared styles: any control with a matching Classes="..." picks these up -->
+    <Window.Styles>
+        <Style Selector="Button.TbBtn">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Padding" Value="10,4" />
+            <Setter Property="CornerRadius" Value="3" />
+        </Style>
+
+        <Style Selector="Button.ConnectBtn">
+            <Setter Property="Padding" Value="0,6" />
+        </Style>
+
+        <Style Selector="TextBlock.SpLabel">
+            <Setter Property="FontSize" Value="9" />
+        </Style>
+
+        <Style Selector="TextBlock.SpValue">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+
+        <Style Selector="TextBlock.SpSub">
+            <Setter Property="FontSize" Value="10" />
+        </Style>
+
+        <Style Selector="TextBlock.ColHdr">
+            <Setter Property="FontSize" Value="10" />
+        </Style>
+
+        <Style Selector="TextBlock.StatVal">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Window.Styles>
+
+    <DockPanel>
+        <Border DockPanel.Dock="Top" BorderBrush="{}{DynamicResource Border}" BorderThickness="0,0,0,1" Padding="14,8">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Margin="0,0,12,0">
+                    <TextBlock Text="Ni" FontSize="15" FontWeight="Bold" />
+                    <TextBlock Text="C" FontSize="15" FontWeight="Bold" />
+                    <TextBlock Text="Mi" FontSize="15" FontWeight="Bold" />
+                    <TextBlock Text="Tap" FontSize="15" FontWeight="Bold" />
+                </StackPanel>
+                <Border DockPanel.Dock="Left" BorderBrush="{}{DynamicResource Border}" BorderThickness="1" CornerRadius="99" Padding="8,2" Margin="0,0,12,0">
+                    <TextBlock Text="{Binding StatusText}" FontSize="11" />
+                </Border>
+                <StackPanel DockPanel.Dock="Top" Spacing="8" />
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="✕  Clear" Classes="TbBtn" Margin="0,0,6,0" />
+                    <Button Content="☀ Light mode" Classes="TbBtn" Margin="0,0,6,0" />
+                    <Button Content="◄ Hide panel" Classes="TbBtn" />
+                </StackPanel>
+            </DockPanel>
+        </Border>
+        <Border DockPanel.Dock="Top" BorderBrush="{}{DynamicResource Border}" BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal">
+                <Border BorderBrush="{}{DynamicResource Border}" BorderThickness="0,0,1,0" Padding="18,6">
+                    <StackPanel>
+                        <TextBlock Text="frames" Classes="SpSub" />
+                        <TextBlock Text="{Binding FrameCount}" Classes="StatVal" />
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="{}{DynamicResource Border}" BorderThickness="0,0,1,0" Padding="18,6">
+                    <StackPanel>
+                        <TextBlock Text="TX" Classes="SpSub" />
+                        <TextBlock Text="{Binding TxCount}" Classes="StatVal" />
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="{}{DynamicResource Border}" BorderThickness="0,0,1,0" Padding="18,6">
+                    <StackPanel>
+                        <TextBlock Text="RX" Classes="SpSub" />
+                        <TextBlock Text="{Binding RxCount}" Classes="StatVal" />
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="{}{DynamicResource Border}" BorderThickness="0,0,1,0" Padding="18,6">
+                    <StackPanel>
+                        <TextBlock Text="session" Classes="SpSub" />
+                        <TextBlock Text="{Binding SessionLabel}" Classes="StatVal" />
+                    </StackPanel>
+                </Border>
+                <Border Padding="18,6">
+                    <StackPanel>
+                        <TextBlock Text="duration" Classes="SpSub" />
+                        <TextBlock Text="{Binding Duration}" Classes="StatVal" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <Border DockPanel.Dock="Bottom" BorderBrush="{}{DynamicResource Border}" BorderThickness="0,1,0,0" Padding="14,3">
+            <TextBlock Text="NiCMiTap — Non-intrusive Capture   |   See everything. Touch nothing." FontSize="10" />
+        </Border>
+        <Grid RowDefinitions="*" ColumnDefinitions="180,*">
+            <Border BorderBrush="{}{DynamicResource Border}" BorderThickness="0,0,1,0">
+                <ScrollViewer>
+                    <StackPanel>
+                        <Border BorderBrush="{}{DynamicResource Border}" BorderThickness="0,0,0,1" Padding="12,10">
+                            <StackPanel>
+                                <TextBlock Text="CONNECTION" Classes="SpLabel" />
+                                <TextBlock Text="{Binding PortName}" Classes="SpValue" />
+                                <TextBlock Text="{}{Binding BaudRate,                            StringFormat='{}{0} baud'}" Classes="SpSub" />
+                                <TextBlock Text="{Binding Mode}" Classes="SpSub" />
+                                <TextBlock Text="{}{Binding DataBits, StringFormat='{}{0} data bits'}" Classes="SpSub" />
+                                <TextBlock Text="{}{Binding Parity, StringFormat='parity: {0}'}" Classes="SpSub" />
+                            </StackPanel>
+                        </Border>
+                        <Border BorderBrush="{}{DynamicResource Border}" BorderThickness="0,0,0,1" Padding="12,10">
+                            <StackPanel>
+                                <TextBlock Text="CHANNELS" Classes="SpLabel" />
+                                <TextBlock Text="CH1 TX" Classes="SpSub" />
+                                <TextBlock Text="{Binding Ch1Label}" Classes="SpValue" />
+                                <TextBlock Text="CH2 RX" Classes="SpSub" Margin="0,6,0,0" />
+                                <TextBlock Text="{Binding Ch2Label}" Classes="SpValue" />
+                            </StackPanel>
+                        </Border>
+                        <Border BorderBrush="{}{DynamicResource Border}" BorderThickness="0,0,0,1" Padding="12,10">
+                            <StackPanel>
+                                <Button Content="⚙  Settings" Classes="TbBtn" Margin="0,0,0,6" HorizontalAlignment="Stretch" />
+                                <Button Content="{}{Binding ConnectLabel}" Classes="ConnectBtn" HorizontalAlignment="Stretch" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+            <Grid Grid.Column="1" RowDefinitions="*,Auto" ColumnDefinitions="*">
+                <DockPanel>
+                    <Border BorderBrush="{}{DynamicResource Border}" BorderThickness="0,0,0,1" Padding="14,4">
+                        <Grid RowDefinitions="*" ColumnDefinitions="155,50,50,*,40,60">
+                            <TextBlock Text="TIMESTAMP" Classes="ColHdr" />
+                            <TextBlock Grid.Column="1" Text="DIR" Classes="ColHdr" />
+                            <TextBlock Grid.Column="2" Text="CH" Classes="ColHdr" />
+                            <TextBlock Grid.Column="3" Text="HEX PREVIEW" Classes="ColHdr" />
+                            <TextBlock Grid.Column="4" Text="FIRST" Classes="ColHdr" />
+                            <TextBlock Grid.Column="5" Text="LENGTH" Classes="ColHdr" />
+                        </Grid>
+                    </Border>
+                </DockPanel>
+                <Border Grid.Row="1" BorderBrush="{}{DynamicResource Border}" BorderThickness="0,1,0,0">
+                    <DockPanel Margin="12">
+                        <DockPanel DockPanel.Dock="Top" Margin="0,0,0,8">
+                            <TextBlock DockPanel.Dock="Left" Text="frame detail" FontSize="12" FontWeight="Bold" />
+                            <Button Content="✕  close" Classes="TbBtn" />
+                        </DockPanel>
+                        <ScrollViewer>
+                            <TextBlock Text="{Binding HexDumpText}" FontSize="11" />
+                        </ScrollViewer>
+                    </DockPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>

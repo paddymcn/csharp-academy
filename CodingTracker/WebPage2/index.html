@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coding Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page">
+    <div class="dock">
+      <div id="border-2" class="box">
+        <h2 id="text-block-1" class="nowrap">Coding Tracker</h2>
+      </div>
+      <div class="dock-middle">
+        <div class="dock-fill">
+          <div id="tab-control-19" class="tabs">
+            <div class="tab-list" role="tablist">
+              <button type="button" role="tab" id="tab-control-19-tab-0" aria-controls="tab-control-19-panel-0" aria-selected="true">Sessions</button>
+              <button type="button" role="tab" id="tab-control-19-tab-1" aria-controls="tab-control-19-panel-1" aria-selected="false">Weekly goal</button>
+            </div>
+            <div class="tab-panel" role="tabpanel" id="tab-control-19-panel-0" aria-labelledby="tab-control-19-tab-0">
+              <div id="stack-panel-11" class="stack">
+                <div id="stack-panel-6" class="row">
+                  <select id="periodsSelect"></select>
+                  <label class="check"><input type="radio" id="newestFirstInput" name="SortOrder" data-state="newestFirst"> Newest first</label>
+                  <label class="check"><input type="radio" id="oldestFirstInput" name="SortOrder" data-state="oldestFirst"> Oldest first</label>
+                </div>
+                <div id="sessionsTable" class="table-wrap">
+                  <table>
+                    <thead><tr><th>Start</th><th>End</th><th>Duration</th><th>Description</th></tr></thead>
+                    <tbody id="sessionsTable-rows"></tbody>
+                  </table>
+                </div>
+                <div id="stack-panel-10" class="row">
+                  <button id="addSessionButton" type="button">Add session</button>
+                  <button id="deleteSessionButton" type="button">Delete</button>
+                </div>
+              </div>
+            </div>
+            <div class="tab-panel" role="tabpanel" id="tab-control-19-panel-1" aria-labelledby="tab-control-19-tab-1" hidden>
+              <div id="stack-panel-17" class="stack">
+                <p class="nowrap">Goal (hours per week)</p>
+                <input id="weeklyGoalHoursInput" type="number" min="1" max="80">
+                <progress id="goalProgressBar" max="100"></progress>
+                <p id="goalSummaryText" class="nowrap"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
